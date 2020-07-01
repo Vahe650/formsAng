@@ -1,0 +1,30 @@
+<div class="col-xs-8 formReq col-xs-offset-2">
+  <input type="text" class="form-control" [(ngModel)]="emplId">
+  <input type="text" class="form-control" [(ngModel)]="emplName">
+  <input type="text" class="form-control" [(ngModel)]="emplSurname">
+  <select name="" [(ngModel)]="emplDegree" class="form-control">
+    <option *ngFor="let degree of degrees" [value]="degree.type">{{degree.text}}</option>
+  </select>
+  <hr>
+  <button [ngClass]="emplId===''? 'btn btn-success' :'btn btn-info'" (click)="emplId===''? addEmployers() :editEmployers()">
+    {{emplId === '' ? 'add Employee' : 'edit Employee'}}
+  </button>
+  <button class="btn btn-primary" (click)="loadEmployers()">Load Employees</button>
+  <hr>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let empl of employees ">
+      <span class="badge">
+        {{empl.employerId}}
+      </span>
+      <span>
+        {{empl.name}}
+      </span>
+      <span>
+        {{empl.surname}}
+      </span>
+      {{empl.degree}}
+      <button class="btn btn-xs btn-info" (click)="setInputValues(empl)">Edit</button>
+      <button class="btn btn-xs btn-danger" (click)="deleteEmpl(empl)">Delete</button>
+    </li>
+  </ul>
+</div>
